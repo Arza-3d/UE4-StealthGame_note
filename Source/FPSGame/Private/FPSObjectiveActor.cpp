@@ -2,8 +2,8 @@
 
 
 #include "FPSObjectiveActor.h"
-#include "Components/StaticMeshComponent.h"
-#include "Components/SphereComponent.h"
+#include "Components/StaticMeshComponent.h" //new
+#include "Components/SphereComponent.h" //new
 
 
 // Sets default values
@@ -12,9 +12,13 @@ AFPSObjectiveActor::AFPSObjectiveActor()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	//////////////////////////
+	// Added component here //
 	MeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComp"));
 	RootComponent = MeshComp;
 
+	//////////////////////////
+	// Added component here //
 	SphereComp = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComp"));
 	SphereComp->SetupAttachment(MeshComp);
 
@@ -24,7 +28,7 @@ AFPSObjectiveActor::AFPSObjectiveActor()
 void AFPSObjectiveActor::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 }
 
 // Called every frame
@@ -33,4 +37,3 @@ void AFPSObjectiveActor::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 }
-

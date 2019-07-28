@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "FPSObjectiveActor.generated.h"
 
+//////////////////////////
+// Added component here //
 class UStaticMeshComponent;
 class USphereComponent;
 
@@ -13,8 +15,8 @@ UCLASS()
 class FPSGAME_API AFPSObjectiveActor : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	AFPSObjectiveActor();
 
@@ -22,13 +24,17 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	//////////////////////////
+	// Added component here //
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	UStaticMeshComponent* MeshComp;
 
+	//////////////////////////
+	// Added component here //
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	USphereComponent* SphereComp;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
