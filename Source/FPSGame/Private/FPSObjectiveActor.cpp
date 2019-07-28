@@ -30,7 +30,7 @@ void AFPSObjectiveActor::BeginPlay()
 	Super::BeginPlay();
 
 	PlayEffects();
-	
+
 }
 
 void AFPSObjectiveActor::PlayEffects()
@@ -45,8 +45,9 @@ void AFPSObjectiveActor::NotifyActorBeginOverlap(AActor * OtherActor)
 
 	PlayEffects();
 
+	////////// (^_^)v
+	// NEW  //
 	AFPSCharacter* MyCharacter = Cast<AFPSCharacter>(OtherActor);
-
 	if (MyCharacter)
 	{
 		MyCharacter->bIsCarryingObjective = true;
@@ -55,4 +56,3 @@ void AFPSObjectiveActor::NotifyActorBeginOverlap(AActor * OtherActor)
 	}
 
 }
-

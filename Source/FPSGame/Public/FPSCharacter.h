@@ -47,12 +47,14 @@ public:
 	/** AnimMontage to play each time we fire */
 	UPROPERTY(EditDefaultsOnly, Category = "Gameplay")
 	UAnimSequence* FireAnimation;
-	
+
+	////////// (^_^)v
+	// NEW  //
 	UPROPERTY(BlueprintReadOnly, Category = "Gameplay")
 	bool bIsCarryingObjective;
 
 protected:
-	
+
 	/** Fires a projectile. */
 	void Fire();
 
@@ -72,4 +74,3 @@ public:
 	UCameraComponent* GetFirstPersonCameraComponent() const { return CameraComponent; }
 
 };
-
