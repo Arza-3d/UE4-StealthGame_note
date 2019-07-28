@@ -13,8 +13,8 @@ UCLASS()
 class FPSGAME_API AFPSObjectiveActor : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	AFPSObjectiveActor();
 
@@ -28,13 +28,15 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	USphereComponent* SphereComp;
 
+	//NEW
 	UPROPERTY(EditDefaultsOnly, Category = "Effects")
 	UParticleSystem* PickupFX;
 
+	//NEW
 	void PlayEffects();
 
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
