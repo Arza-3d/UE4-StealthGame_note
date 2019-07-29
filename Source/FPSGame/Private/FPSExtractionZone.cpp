@@ -15,13 +15,13 @@ AFPSExtractionZone::AFPSExtractionZone()
 	OverlapComp->SetBoxExtent(FVector(200.0f));
 	RootComponent = OverlapComp;
 
-	OverlapComp->SetHiddenInGame(false);//debug
+	OverlapComp->SetHiddenInGame(false);//debug will delete this later
 
 	OverlapComp->OnComponentBeginOverlap.AddDynamic(this, &AFPSExtractionZone::HandleOverlap);
 
 }
 
-void AFPSExtractionZone::HandleOverlap(UPrimitiveComponent * OverlappedComponent, AActor * OtherActor, 
+void AFPSExtractionZone::HandleOverlap(UPrimitiveComponent * OverlappedComponent, AActor * OtherActor,
 	UPrimitiveComponent * OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
 {
 	UE_LOG(LogTemp, Log, TEXT("Overlapped extraction zone!"));
