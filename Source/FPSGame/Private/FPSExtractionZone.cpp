@@ -48,7 +48,6 @@ void AFPSExtractionZone::HandleOverlap(UPrimitiveComponent * OverlappedComponent
 	else
 	{
 		UGameplayStatics::PlaySound2D(this, ObjectiveMissingSound); 
-		// using :: because they are static, don't belong to instance just to the class, it's also kinda like namespace
 	}
 
 	UE_LOG(LogTemp, Log, TEXT("Overlapped extraction zone!"));
