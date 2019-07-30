@@ -27,6 +27,12 @@ protected:
 	UFUNCTION()
 	void OnPawnSeen(APawn* SeenPawn);
 
+	FTimerHandle TimerHandle_ResetOrientation;
+
+	FRotator OriginalOrientation;
+
+	void ResetOrientation();
+
 	UFUNCTION()
 	void OnNoiseHeard(APawn* NoiseInstigator, const FVector& Location, float Volume);
 

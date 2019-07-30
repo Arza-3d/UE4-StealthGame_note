@@ -22,6 +22,7 @@ void AFPSAIGuard::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	OriginalOrientation = GetActorRotation();
 }
 
 
@@ -37,6 +38,11 @@ void AFPSAIGuard::OnPawnSeen(APawn* SeenPawn)
 
 }
 
+void AFPSAIGuard::ResetOrientation()
+{
+	SetActorRotation(OriginalOrientation);
+}
+
 void AFPSAIGuard::OnNoiseHeard(APawn* NoiseInstigator, const FVector & Location, float Volume)
 {
 	DrawDebugSphere(GetWorld(), Location, 32.0f, 12, FColor::Green, false, 10.0f);
@@ -48,6 +54,10 @@ void AFPSAIGuard::OnNoiseHeard(APawn* NoiseInstigator, const FVector & Location,
 	NewLookAt.Pitch = 0.0f;
 
 	SetActorRotation(NewLookAt);
+
+	GetWorldTimerManager().ClearTimer(TimerHandle_ResetOrientation);
+	GetWorldTimerManager().SetTimer(TimerHandle_ResetOrientation, this, &AFPSAIGuard::ResetOrientation, 3.0f);
+
 }
 
 
