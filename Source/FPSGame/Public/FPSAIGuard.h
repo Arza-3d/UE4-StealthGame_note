@@ -28,7 +28,7 @@ protected:
 	void OnPawnSeen(APawn* SeenPawn);
 
 	UFUNCTION()
-		void OnPawnHeard(APawn* NoiseInstigator, const FVector& Location, float Volume);
+		void OnNoiseHeard(APawn* NoiseInstigator, const FVector& Location, float Volume);
 
 public:	
 
