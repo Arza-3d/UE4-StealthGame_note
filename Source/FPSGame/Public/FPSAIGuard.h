@@ -40,7 +40,6 @@ protected:
 	UFUNCTION()
 	void OnNoiseHeard(APawn* NoiseInstigator, const FVector& Location, float Volume);
 
-	UPROPERTY(VisibleAnywhere, Category = "AI")
 	EAIState GuardState;
 
 	void SetGuardState(EAIState NewState);
