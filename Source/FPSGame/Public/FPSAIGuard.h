@@ -8,6 +8,16 @@
 
 class UPawnSensingComponent;
 
+UENUM(BlueprintType)
+enum class EAIState : uint8 //must be uin8 to expose it as UE4 enum
+{
+	Idle,
+
+	Suspicious,
+
+	Alerted
+};
+
 UCLASS()
 class FPSGAME_API AFPSAIGuard : public ACharacter
 {
@@ -29,6 +39,20 @@ protected:
 
 	UFUNCTION()
 	void OnNoiseHeard(APawn* NoiseInstigator, const FVector& Location, float Volume);
+
+	UPROPERTY(VisibleAnywhere, Category = "AI")
+	EAIState GuardState;
+
+	void SetGuardState(EAIState NewState);
+
+	FRotator OriginalRotation;
+
+	void ResetOrientation();
+
+	FTimerHandle TimerHandle_ResetOrientation;
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "AI")
+	void OnStateChanged(EAIState NewState);
 
 public:
 
