@@ -23,7 +23,8 @@ AFPSObjectiveActor::AFPSObjectiveActor()
 	/////////////////////////////////////////////////////////////////////2z
 }
 
-// Called when the game starts or when spawned
+////////////////////////////////////////////////////////////////////////////////////3a
+// NEW: play effect at start and play again whern actor overlap
 void AFPSObjectiveActor::BeginPlay()
 {
 	Super::BeginPlay();
@@ -40,3 +41,4 @@ void AFPSObjectiveActor::NotifyActorBeginOverlap(AActor * OtherActor)
 	Super::NotifyActorBeginOverlap(OtherActor);
 	PlayEffects();
 }
+////////////////////////////////////////////////////////////////////////////////////3z
