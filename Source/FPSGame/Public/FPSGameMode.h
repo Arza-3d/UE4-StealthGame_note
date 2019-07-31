@@ -1,5 +1,3 @@
-// Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -25,6 +23,3 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, Category = "GameMode")
 	void OnMissionCompleted(APawn* InstigatorPawn, bool bMissionSuccess);
 };
-
-
-
