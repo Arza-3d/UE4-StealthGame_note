@@ -2,5 +2,5 @@
 
 AFPSObjectiveActor::AFPSObjectiveActor()
 {
-	PrimaryActorTick.bCanEverTick = true;
+
 }
