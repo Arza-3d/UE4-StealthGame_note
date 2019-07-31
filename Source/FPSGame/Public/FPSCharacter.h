@@ -1,5 +1,3 @@
-// Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -21,56 +19,47 @@ class AFPSCharacter : public ACharacter
 
 protected:
 
-	/** Pawn mesh: 1st person view  */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Mesh")
 	USkeletalMeshComponent* Mesh1PComponent;
 
-	/** Gun mesh: 1st person view (seen only by self) */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Mesh")
 	USkeletalMeshComponent* GunMeshComponent;
 
-	/** First person camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
 	UCameraComponent* CameraComponent;
 
 public:
 	AFPSCharacter();
 
-	/** Projectile class to spawn */
 	UPROPERTY(EditDefaultsOnly, Category="Projectile")
 	TSubclassOf<AFPSProjectile> ProjectileClass;
 
-	/** Sound to play each time we fire */
 	UPROPERTY(EditDefaultsOnly, Category="Gameplay")
 	USoundBase* FireSound;
 
-	/** AnimMontage to play each time we fire */
 	UPROPERTY(EditDefaultsOnly, Category = "Gameplay")
 	UAnimSequence* FireAnimation;
 
-	////////// (^_^)v
-	// NEW  //
+	//////////////////////////////////////////////////////1a
+	// NEW: bool to check objective is carried
 	UPROPERTY(BlueprintReadOnly, Category = "Gameplay")
 	bool bIsCarryingObjective;
+	//////////////////////////////////////////////////////1z
 
 protected:
 
-	/** Fires a projectile. */
 	void Fire();
 
-	/** Handles moving forward/backward */
 	void MoveForward(float Val);
 
-	/** Handles strafing movement, left and right */
 	void MoveRight(float Val);
 
 	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;
 
 public:
-	/** Returns Mesh1P subobject **/
+
 	USkeletalMeshComponent* GetMesh1P() const { return Mesh1PComponent; }
 
-	/** Returns FirstPersonCameraComponent subobject **/
 	UCameraComponent* GetFirstPersonCameraComponent() const { return CameraComponent; }
 
 };
