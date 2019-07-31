@@ -1,39 +1,19 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "FPSObjectiveActor.h"
-#include "Components/StaticMeshComponent.h" //new
-#include "Components/SphereComponent.h" //new
+//////////////////////////////////////////////1a
+// NEW: added new component
+#include "Components/StaticMeshComponent.h"
+#include "Components/SphereComponent.h"
+//////////////////////////////////////////////1z
 
-
-// Sets default values
 AFPSObjectiveActor::AFPSObjectiveActor()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
 
-	//////////////////////////
-	// Added component here //
+	//////////////////////////////////////////////////////////////////////////////2a
+	// NEW: added new component
 	MeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComp"));
 	RootComponent = MeshComp;
 
-	//////////////////////////
-	// Added component here //
 	SphereComp = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComp"));
 	SphereComp->SetupAttachment(MeshComp);
-
-}
-
-// Called when the game starts or when spawned
-void AFPSObjectiveActor::BeginPlay()
-{
-	Super::BeginPlay();
-
-}
-
-// Called every frame
-void AFPSObjectiveActor::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
+	//////////////////////////////////////////////////////////////////////////////2z
 }
