@@ -1,13 +1,12 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "FPSExtractionZone.h"
 #include "Components/BoxComponent.h"
 #include "Components/DecalComponent.h"
+///////////////////////////////////1a
+// NEW: added char and gamemode
 #include "FPSCharacter.h"
 #include "FPSGameMode.h"
+///////////////////////////////////1z
 
-// Sets default values
 AFPSExtractionZone::AFPSExtractionZone()
 {
 
@@ -27,18 +26,21 @@ AFPSExtractionZone::AFPSExtractionZone()
 	DecalComp->SetupAttachment(RootComponent);
 }
 
-void AFPSExtractionZone::HandleOverlap(UPrimitiveComponent * OverlappedComponent, AActor * OtherActor, 
+void AFPSExtractionZone::HandleOverlap(UPrimitiveComponent * OverlappedComponent, AActor * OtherActor,
 	UPrimitiveComponent * OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
 {
 	UE_LOG(LogTemp, Log, TEXT("Overlapped extraction zone!"));
 
+	/////////////////////////////////////////////////////////////////////////////2a
+	// NEW: if overlap with char call gamemode function
 	AFPSCharacter* MyPawn = Cast<AFPSCharacter>(OtherActor);
 	if (MyPawn && MyPawn->bIsCarryingObjective)
 	{
 		AFPSGameMode* GM = Cast<AFPSGameMode>(GetWorld()->GetAuthGameMode());
 		if (GM)
 		{
-			GM->CompleteMission(MyPawn); // this function will disable the controller on this character
+			GM->CompleteMission(MyPawn);
 		}
 	}
+	/////////////////////////////////////////////////////////////////////////////2z
 }

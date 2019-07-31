@@ -7,14 +7,14 @@
 
 AFPSGameMode::AFPSGameMode()
 {
-	// set default pawn class to our Blueprinted character
 	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnClassFinder(TEXT("/Game/Blueprints/BP_Player"));
 	DefaultPawnClass = PlayerPawnClassFinder.Class;
 
-	// use our custom HUD class
 	HUDClass = AFPSHUD::StaticClass();
 }
 
+/////////////////////////////////////////////////////////////1a
+// NEW: complete mission to be called and start the event
 void AFPSGameMode::CompleteMission(APawn* InstigatorPawn)
 {
 	if (InstigatorPawn) {
@@ -22,5 +22,5 @@ void AFPSGameMode::CompleteMission(APawn* InstigatorPawn)
 	}
 
 	OnMissionCompleted(InstigatorPawn);
+	/////////////////////////////////////////////////////////////1z
 }
-

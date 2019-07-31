@@ -1,5 +1,3 @@
-// Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -15,11 +13,11 @@ public:
 
 	AFPSGameMode();
 
+	/////////////////////////////////////////////////////////////////1a
+	// NEW: added function and event
 	void CompleteMission(APawn* InstigatorPawn);
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "GameMode")
 	void OnMissionCompleted(APawn* InstigatorPawn);
+	/////////////////////////////////////////////////////////////////1z
 };
-
-
-
