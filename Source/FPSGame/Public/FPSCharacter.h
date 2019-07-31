@@ -51,11 +51,11 @@ protected:
 
 	void Fire();
 
-	////////////////////////////////////////////////
-	// NEW: added server implementable function   //
-	UFUNCTION(Server, Reliable, WithValidation)   //
-	void ServerFire();                            //
-	////////////////////////////////////////////////
+	////////////////////////////////////////////////1a
+	// NEW: added server implementable function   
+	UFUNCTION(Server, Reliable, WithValidation)
+	void ServerFire();
+	////////////////////////////////////////////////1z
 
 	void MoveForward(float Val);
 
