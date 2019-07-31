@@ -1,5 +1,3 @@
-// Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -13,8 +11,11 @@ class AFPSGameMode : public AGameModeBase
 
 protected:
 
+	////////////////////////////////////////////////////////1a
+	// NEW: actor class to switch camera during mission end
 	UPROPERTY(EditDefaultsOnly, Category = "Spectating")
 	TSubclassOf<AActor> SpectatingViewPointClass;
+	////////////////////////////////////////////////////////1z
 
 public:
 
@@ -25,6 +26,3 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, Category = "GameMode")
 	void OnMissionCompleted(APawn* InstigatorPawn);
 };
-
-
-

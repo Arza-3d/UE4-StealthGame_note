@@ -1,27 +1,28 @@
-// Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
-
 #include "FPSGameMode.h"
 #include "FPSHUD.h"
 #include "FPSCharacter.h"
 #include "UObject/ConstructorHelpers.h"
+///////////////////////////////////////////1a
+// NEW: it is used to GetAllActorsOfClass
 #include "Kismet/GameplayStatics.h"
+///////////////////////////////////////////1z
 
 AFPSGameMode::AFPSGameMode()
 {
-	// set default pawn class to our Blueprinted character
 	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnClassFinder(TEXT("/Game/Blueprints/BP_Player"));
 	DefaultPawnClass = PlayerPawnClassFinder.Class;
 
-	// use our custom HUD class
 	HUDClass = AFPSHUD::StaticClass();
 }
 
 void AFPSGameMode::CompleteMission(APawn* InstigatorPawn)
 {
-	if (InstigatorPawn) 
+	if (InstigatorPawn)
 	{
 		InstigatorPawn->DisableInput(nullptr);
 
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////2a
+		// NEW: move the camera to other actor if the class is defined in blueprint
 		if (SpectatingViewPointClass)
 		{
 			AActor* NewViewTarget;
@@ -30,7 +31,6 @@ void AFPSGameMode::CompleteMission(APawn* InstigatorPawn)
 
 			UGameplayStatics::GetAllActorsOfClass(this, SpectatingViewPointClass, ReturnedActors);
 
-			// Change viewtarget if any actor found
 			if (ReturnedActors.Num() > 0)
 			{
 				NewViewTarget = ReturnedActors[0];
@@ -44,12 +44,14 @@ void AFPSGameMode::CompleteMission(APawn* InstigatorPawn)
 		}
 		else
 		{
-			UE_LOG(LogTemp, Warning, TEXT("SpectatingViewPoint class is nullptr. Please update GameMode class with valid subclass, Cannot change spectating view target"));
+			UE_LOG(LogTemp, Warning, TEXT(
+				"SpectatingViewPoint class is nullptr. Please update GameMode class with valid subclass, Cannot change spectating view target"
+			));
 		}
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////2z
 
 	}
 
 	OnMissionCompleted(InstigatorPawn);
 
 }
-
