@@ -1,7 +1,6 @@
 #include "FPSExtractionZone.h"
 #include "Components/BoxComponent.h"
 
-// Sets default values
 AFPSExtractionZone::AFPSExtractionZone()
 {
 	OverlapComp = CreateDefaultSubobject<UBoxComponent>(TEXT("OverlapComp"));
