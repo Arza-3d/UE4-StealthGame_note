@@ -47,8 +47,10 @@ void AFPSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 
 void AFPSCharacter::Fire()
 {
-
+	///////////////////////////////////////1a
+	// NEW: call server function instead
 	ServerFire();
+	///////////////////////////////////////1z
 
 	if (FireSound)
 	{
@@ -66,30 +68,30 @@ void AFPSCharacter::Fire()
 	}
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////
-// NEW: server function                                                                  //
-void AFPSCharacter::ServerFire_Implementation()                                          //
-{                                                                                        //
-	if (ProjectileClass)                                                                 //
-	{                                                                                    //
-		FVector MuzzleLocation = GunMeshComponent->GetSocketLocation("Muzzle");          //
-		FRotator MuzzleRotation = GunMeshComponent->GetSocketRotation("Muzzle");         //
-                                                                                         //
-		FActorSpawnParameters ActorSpawnParams;                                          //
-		ActorSpawnParams.SpawnCollisionHandlingOverride =                                //
-			ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding; //
-		ActorSpawnParams.Instigator = this;                                              //
-                                                                                         //
-		GetWorld()->SpawnActor<AFPSProjectile>(ProjectileClass, MuzzleLocation,          //
-			MuzzleRotation, ActorSpawnParams);                                           //
-	}                                                                                    //
-}                                                                                        //
-                                                                                         //
-bool AFPSCharacter::ServerFire_Validate()                                                //
-{                                                                                        //
-	return true;                                                                         //
-}                                                                                        //
-///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////2a
+// NEW: server function
+void AFPSCharacter::ServerFire_Implementation()
+{
+	if (ProjectileClass)
+	{
+		FVector MuzzleLocation = GunMeshComponent->GetSocketLocation("Muzzle");
+		FRotator MuzzleRotation = GunMeshComponent->GetSocketRotation("Muzzle");
+
+		FActorSpawnParameters ActorSpawnParams;
+		ActorSpawnParams.SpawnCollisionHandlingOverride =
+			ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
+		ActorSpawnParams.Instigator = this;
+
+		GetWorld()->SpawnActor<AFPSProjectile>(ProjectileClass, MuzzleLocation,
+			MuzzleRotation, ActorSpawnParams);
+	}
+}
+
+bool AFPSCharacter::ServerFire_Validate()
+{
+	return true;
+}
+///////////////////////////////////////////////////////////////////////////////////////////2z
 
 void AFPSCharacter::MoveForward(float Value)
 {
