@@ -1,12 +1,12 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "FPSExtractionZone.h"
 #include "Components/BoxComponent.h"
 #include "Components/DecalComponent.h"
 #include "FPSCharacter.h"
 #include "FPSGameMode.h"
+//////////////////////////////////////1a
+// NEW: need it to play sound
 #include "Kismet/GameplayStatics.h"
+//////////////////////////////////////1z
 
 AFPSExtractionZone::AFPSExtractionZone()
 {
@@ -45,11 +45,12 @@ void AFPSExtractionZone::HandleOverlap(UPrimitiveComponent * OverlappedComponent
 			GM->CompleteMission(MyPawn);
 		}
 	}
+	//////////////////////////////////////////////////////////////////2a
+	// NEW: play sound if object is not carried yet
 	else
 	{
-		UGameplayStatics::PlaySound2D(this, ObjectiveMissingSound); 
-		// using :: because they are static, don't belong to instance just to the class, it's also kinda like namespace
+		UGameplayStatics::PlaySound2D(this, ObjectiveMissingSound);
 	}
-
+	//////////////////////////////////////////////////////////////////2z
 	UE_LOG(LogTemp, Log, TEXT("Overlapped extraction zone!"));
 }
