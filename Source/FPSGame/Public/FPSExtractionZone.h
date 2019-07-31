@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -7,7 +5,10 @@
 #include "FPSExtractionZone.generated.h"
 
 class UBoxComponent;
+////////////////////////////1a
+// NEW: added decal class
 class UDecalComponent;
+////////////////////////////1z
 
 UCLASS()
 class FPSGAME_API AFPSExtractionZone : public AActor
@@ -23,8 +24,11 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	UBoxComponent* OverlapComp;
 
+	///////////////////////////////////////////////////////2a
+	// NEW: added decal component
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	UDecalComponent* DecalComp;
+	///////////////////////////////////////////////////////2z
 
 	UFUNCTION()
 	void HandleOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
