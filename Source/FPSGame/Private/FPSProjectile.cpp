@@ -26,11 +26,11 @@ AFPSProjectile::AFPSProjectile()
 
 	InitialLifeSpan = 3.0f;
 
-	/////////////////////////////////////////////
-	// NEW: Replicates movement and this actor //
-	SetReplicates(true);                       //
-	SetReplicateMovement(true);                //
-	/////////////////////////////////////////////
+	/////////////////////////////////////////////1a
+	// NEW: Replicates movement and this actor
+	SetReplicates(true);
+	SetReplicateMovement(true);
+	/////////////////////////////////////////////1z
 
 }
 
@@ -44,13 +44,13 @@ void AFPSProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPr
 
 	}
 
-	/////////////////////////////////////////
-	// NEW: only destroy from the server   //
-	if (Role == ROLE_Authority)            //
-	{                                      //
-		MakeNoise(1.0f, Instigator);         //
- 		Destroy();                           //
-	}                                      //
-	/////////////////////////////////////////
+	/////////////////////////////////////////2a
+	// NEW: only destroy from the server
+	if (Role == ROLE_Authority)
+	{
+		MakeNoise(1.0f, Instigator);
+ 		Destroy();
+	}
+	/////////////////////////////////////////2z
 
 }
