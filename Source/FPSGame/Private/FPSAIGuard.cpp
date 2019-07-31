@@ -1,46 +1,27 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "FPSAIGuard.h"
 #include "Perception/PawnSensingComponent.h"
+///////////////////////////////1a
+// NEW: draw debug
 #include "DrawDebugHelpers.h"
+///////////////////////////////1z
 
-// Sets default values
 AFPSAIGuard::AFPSAIGuard()
 {
- 	
-	PrimaryActorTick.bCanEverTick = true;
+  PawnSensingComp = CreateDefaultSubobject<UPawnSensingComponent>(TEXT("PawnSensingComp"));
 
-	PawnSensingComp = CreateDefaultSubobject<UPawnSensingComponent>(TEXT("PawnSensingComp"));
-
+  ///////////////////////////////////////////////////////////////////////////2a
+  // NEW: bind function to OnSeePawn event
 	PawnSensingComp->OnSeePawn.AddDynamic(this, &AFPSAIGuard::OnPawnSeen);
-
+  ///////////////////////////////////////////////////////////////////////////2b
 }
 
-void AFPSAIGuard::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
-
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////3a
 void AFPSAIGuard::OnPawnSeen(APawn* SeenPawn)
 {
-
 	if (SeenPawn == nullptr)
 	{
 		return;
 	}
-	
 	DrawDebugSphere(GetWorld(), SeenPawn->GetActorLocation(), 32.0f, 12, FColor::Red, false, 10.0f);
-
 }
-
-
-void AFPSAIGuard::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////3z
