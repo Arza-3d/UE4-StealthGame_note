@@ -1,52 +1,31 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "FPSAIGuard.h"
 #include "Perception/PawnSensingComponent.h"
 #include "DrawDebugHelpers.h"
 
-// Sets default values
 AFPSAIGuard::AFPSAIGuard()
 {
-
-	PrimaryActorTick.bCanEverTick = true;
-
 	PawnSensingComp = CreateDefaultSubobject<UPawnSensingComponent>(TEXT("PawnSensingComp"));
 
 	PawnSensingComp->OnSeePawn.AddDynamic(this, &AFPSAIGuard::OnPawnSeen);
 	PawnSensingComp->OnHearNoise.AddDynamic(this, &AFPSAIGuard::OnNoiseHeard);
-
 }
-
-void AFPSAIGuard::BeginPlay()
-{
-	Super::BeginPlay();
-
-	OriginalRotation = GetActorRotation();
-}
-
 
 void AFPSAIGuard::OnPawnSeen(APawn* SeenPawn)
 {
-
 	if (SeenPawn == nullptr)
 	{
 		return;
 	}
-
 	DrawDebugSphere(GetWorld(), SeenPawn->GetActorLocation(), 32.0f, 12, FColor::Red, false, 10.0f);
-
-}
-
-void AFPSAIGuard::ResetOrientation()
-{
-	SetActorRotation(OriginalRotation);
 }
 
 void AFPSAIGuard::OnNoiseHeard(APawn* NoiseInstigator, const FVector & Location, float Volume)
 {
 	DrawDebugSphere(GetWorld(), Location, 32.0f, 12, FColor::Green, false, 10.0f);
 
+
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////1a
+	// NEW: look at noise source, reset rotation after 3 seconds
 	FVector Direction = Location - GetActorLocation();
 	Direction.Normalize();
 
@@ -57,12 +36,19 @@ void AFPSAIGuard::OnNoiseHeard(APawn* NoiseInstigator, const FVector & Location,
 
 	GetWorldTimerManager().ClearTimer(TimerHandle_ResetOrientation);
 	GetWorldTimerManager().SetTimer(TimerHandle_ResetOrientation, this, &AFPSAIGuard::ResetOrientation, 3.0f);
-
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////1z
 }
 
-
-void AFPSAIGuard::Tick(float DeltaTime)
+/////////////////////////////////////////////////2a
+// NEW: get initial rotation and reset function
+void AFPSAIGuard::BeginPlay()
 {
-	Super::Tick(DeltaTime);
-
+	Super::BeginPlay();
+	OriginalRotation = GetActorRotation();
 }
+
+void AFPSAIGuard::ResetOrientation()
+{
+	SetActorRotation(OriginalRotation);
+}
+/////////////////////////////////////////////////2z

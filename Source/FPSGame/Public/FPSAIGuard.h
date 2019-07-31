@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -19,25 +17,23 @@ public:
 
 protected:
 
-	virtual void BeginPlay() override;
-
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	UPawnSensingComponent* PawnSensingComp;
 
 	UFUNCTION()
 	void OnPawnSeen(APawn* SeenPawn);
 
+	UFUNCTION()
+	void OnNoiseHeard(APawn* NoiseInstigator, const FVector& Location, float Volume);
+
+	//////////////////////////////////////////////1a
+	// NEW: need to get initial rotation
+	virtual void BeginPlay() override;
+
 	FTimerHandle TimerHandle_ResetOrientation;
 
 	FRotator OriginalRotation;
 
 	void ResetOrientation();
-
-	UFUNCTION()
-	void OnNoiseHeard(APawn* NoiseInstigator, const FVector& Location, float Volume);
-
-public:
-
-	virtual void Tick(float DeltaTime) override;
-
+	//////////////////////////////////////////////1z
 };
