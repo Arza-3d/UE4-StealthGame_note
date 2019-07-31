@@ -35,9 +35,4 @@ protected:
 	void ResetOrientation();
 
 	FRotator OriginalRotation;
-
-public:
-
-	virtual void Tick(float DeltaTime) override;
-
 };

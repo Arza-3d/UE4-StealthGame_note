@@ -1,15 +1,11 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "FPSAIGuard.h"
 #include "Perception/PawnSensingComponent.h"
 #include "DrawDebugHelpers.h"
 #include "FPSGameMode.h"
 
-// Sets default values
 AFPSAIGuard::AFPSAIGuard()
 {
- 	
+
 	PrimaryActorTick.bCanEverTick = true;
 
 	PawnSensingComp = CreateDefaultSubobject<UPawnSensingComponent>(TEXT("PawnSensingComp"));
@@ -22,7 +18,6 @@ AFPSAIGuard::AFPSAIGuard()
 void AFPSAIGuard::BeginPlay()
 {
 	Super::BeginPlay();
-	
 	OriginalRotation = GetActorRotation();
 }
 
@@ -34,13 +29,16 @@ void AFPSAIGuard::OnPawnSeen(APawn* SeenPawn)
 	{
 		return;
 	}
-	
+
 	DrawDebugSphere(GetWorld(), SeenPawn->GetActorLocation(), 32.0f, 12, FColor::Red, false, 10.0f);
 
 	AFPSGameMode* GM = Cast<AFPSGameMode>(GetWorld()->GetAuthGameMode());
 	if (GM)
 	{
+		///////////////////////////////////////1a
+		// NEW: fail mission (false)
 		GM->CompleteMission(SeenPawn, false);
+		///////////////////////////////////////1z
 	}
 
 }
@@ -65,12 +63,3 @@ void AFPSAIGuard::ResetOrientation()
 {
 	SetActorRotation(OriginalRotation);
 }
-
-
-void AFPSAIGuard::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-
-
