@@ -6,10 +6,10 @@ public class FPSGame : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore",
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore"
 		////////////////////////1a
 		// NEW: add AI module
-		"AIModule"
+		,"AIModule"
 		////////////////////////1z
 		});
 	}
