@@ -12,7 +12,10 @@ class UCameraComponent;
 class AFPSProjectile;
 class USoundBase;
 class UAnimSequence;
+////////////////////////////////////1a
+// NEW: noise emitter
 class UPawnNoiseEmitterComponent;
+////////////////////////////////////1z
 
 
 UCLASS()
@@ -22,58 +25,50 @@ class AFPSCharacter : public ACharacter
 
 protected:
 
-	/** Pawn mesh: 1st person view  */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Mesh")
 	USkeletalMeshComponent* Mesh1PComponent;
 
-	/** Gun mesh: 1st person view (seen only by self) */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Mesh")
 	USkeletalMeshComponent* GunMeshComponent;
 
-	/** First person camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
 	UCameraComponent* CameraComponent;
 
+	////////////////////////////////////////////////////////////////2a
+	// NEW: noiser emitter
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "AI")
 	UPawnNoiseEmitterComponent* NoiseEmitterComponent;
+	////////////////////////////////////////////////////////////////2z
 
 public:
 	AFPSCharacter();
 
-	/** Projectile class to spawn */
 	UPROPERTY(EditDefaultsOnly, Category="Projectile")
 	TSubclassOf<AFPSProjectile> ProjectileClass;
 
-	/** Sound to play each time we fire */
 	UPROPERTY(EditDefaultsOnly, Category="Gameplay")
 	USoundBase* FireSound;
 
-	/** AnimMontage to play each time we fire */
 	UPROPERTY(EditDefaultsOnly, Category = "Gameplay")
 	UAnimSequence* FireAnimation;
-	
+
 	UPROPERTY(BlueprintReadOnly, Category = "Gameplay")
 	bool bIsCarryingObjective;
 
 protected:
-	
-	/** Fires a projectile. */
+
 	void Fire();
 
-	/** Handles moving forward/backward */
 	void MoveForward(float Val);
 
-	/** Handles strafing movement, left and right */
 	void MoveRight(float Val);
 
 	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;
 
 public:
-	/** Returns Mesh1P subobject **/
+
 	USkeletalMeshComponent* GetMesh1P() const { return Mesh1PComponent; }
 
-	/** Returns FirstPersonCameraComponent subobject **/
 	UCameraComponent* GetFirstPersonCameraComponent() const { return CameraComponent; }
 
 };
-
