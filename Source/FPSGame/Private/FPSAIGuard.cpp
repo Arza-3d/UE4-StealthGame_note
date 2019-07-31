@@ -11,7 +11,7 @@ AFPSAIGuard::AFPSAIGuard()
 
   ///////////////////////////////////////////////////////////////////////////2a
   // NEW: bind function to OnSeePawn event
-	PawnSensingComp->OnSeePawn.AddDynamic(this, &AFPSAIGuard::OnPawnSeen);
+  PawnSensingComp->OnSeePawn.AddDynamic(this, &AFPSAIGuard::OnPawnSeen);
   ///////////////////////////////////////////////////////////////////////////2b
 }
 
