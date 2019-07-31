@@ -1,13 +1,9 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "FPSExtractionZone.h"
 #include "Components/BoxComponent.h"
 
 // Sets default values
 AFPSExtractionZone::AFPSExtractionZone()
 {
-
 	OverlapComp = CreateDefaultSubobject<UBoxComponent>(TEXT("OverlapComp"));
 	OverlapComp->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
 	OverlapComp->SetCollisionResponseToAllChannels(ECR_Ignore);
@@ -15,10 +11,9 @@ AFPSExtractionZone::AFPSExtractionZone()
 	OverlapComp->SetBoxExtent(FVector(200.0f));
 	RootComponent = OverlapComp;
 
-	OverlapComp->SetHiddenInGame(false);//debug will delete this later
+	OverlapComp->SetHiddenInGame(false);
 
 	OverlapComp->OnComponentBeginOverlap.AddDynamic(this, &AFPSExtractionZone::HandleOverlap);
-
 }
 
 void AFPSExtractionZone::HandleOverlap(UPrimitiveComponent * OverlappedComponent, AActor * OtherActor,
