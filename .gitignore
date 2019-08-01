@@ -24,6 +24,6 @@ FPSGame.v12.suo
 *.fbx
 *.VC.db
 *.VC.opendb
-*.TMP
+#*.TMP
 
 Plugins/*/Intermediate/*
