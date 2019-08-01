@@ -6,7 +6,6 @@
 
 AFPSObjectiveActor::AFPSObjectiveActor()
 {
-
 	MeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComp"));
 	MeshComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	RootComponent = MeshComp;
@@ -17,12 +16,15 @@ AFPSObjectiveActor::AFPSObjectiveActor()
 	SphereComp->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
 	SphereComp->SetupAttachment(MeshComp);
 
+	/////////////////////////1a
+	// NEW: replicate
+	SetReplicates(true);
+	/////////////////////////1z
 }
 
 void AFPSObjectiveActor::BeginPlay()
 {
 	Super::BeginPlay();
-
 	PlayEffects();
 }
 
@@ -31,20 +33,22 @@ void AFPSObjectiveActor::PlayEffects()
 	UGameplayStatics::SpawnEmitterAtLocation(this, PickupFX, GetActorLocation());
 }
 
-
 void AFPSObjectiveActor::NotifyActorBeginOverlap(AActor * OtherActor)
 {
 	Super::NotifyActorBeginOverlap(OtherActor);
-
 	PlayEffects();
 
-	AFPSCharacter* MyCharacter = Cast<AFPSCharacter>(OtherActor);
-
-	if (MyCharacter)
+	///////////////////////////////////////////////////////////////////2a
+	// NEW: destroy actor
+	if (Role == ROLE_Authority)
 	{
-		MyCharacter->bIsCarryingObjective = true;
+		AFPSCharacter* MyCharacter = Cast<AFPSCharacter>(OtherActor);
+		if (MyCharacter)
+		{
+			MyCharacter->bIsCarryingObjective = true;
 
-		Destroy();
+			Destroy();
+		}
 	}
-
+	//////////////////////////////////////////////////////////////////2z
 }
