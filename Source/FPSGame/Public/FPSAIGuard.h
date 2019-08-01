@@ -7,12 +7,10 @@
 class UPawnSensingComponent;
 
 UENUM(BlueprintType)
-enum class EAIState : uint8 //must be uin8 to expose it as UE4 enum
+enum class EAIState : uint8
 {
 	Idle,
-
 	Suspicious,
-
 	Alerted
 };
 
@@ -38,8 +36,6 @@ protected:
 	UFUNCTION()
 	void OnNoiseHeard(APawn* NoiseInstigator, const FVector& Location, float Volume);
 
-	EAIState GuardState;
-
 	void SetGuardState(EAIState NewState);
 
 	FRotator OriginalRotation;
@@ -51,8 +47,12 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent, Category = "AI")
 	void OnStateChanged(EAIState NewState);
 
-public:
+	////////////////////////////////////////////////1a
+	// NEW: replicated this enum
+	UPROPERTY(ReplicatedUsing=OnRep_GuardState)
+	EAIState GuardState;
 
-	virtual void Tick(float DeltaTime) override;
-
+	UFUNCTION()
+	void OnRep_GuardState();
+	////////////////////////////////////////////////1z
 };
