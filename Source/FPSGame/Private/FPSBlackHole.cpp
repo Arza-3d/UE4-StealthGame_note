@@ -6,7 +6,7 @@
 
 AFPSBlackHole::AFPSBlackHole()
 {
- 	
+
 	PrimaryActorTick.bCanEverTick = true;
 
 	MeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComp"));
@@ -39,7 +39,7 @@ void AFPSBlackHole::Tick(float DeltaTime)
 
 		if (primComp && primComp->IsSimulatingPhysics())
 		{
-			primComp->AddRadialForce(GetActorLocation(), sphereRadius, -3000.0f, ERadialImpulseFalloff::RIF_Constant,	true);
+			primComp->AddRadialForce(GetActorLocation(), sphereRadius, -3000.0f, ERadialImpulseFalloff::RIF_Constant, true);
 		}
 	}
 
@@ -48,7 +48,7 @@ void AFPSBlackHole::Tick(float DeltaTime)
 void AFPSBlackHole::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 }
 
 void AFPSBlackHole::HandleInnerSphereBeginOverlap(UPrimitiveComponent * OverlappedComponent, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
@@ -56,6 +56,3 @@ void AFPSBlackHole::HandleInnerSphereBeginOverlap(UPrimitiveComponent * Overlapp
 	if (OtherActor)
 		OtherActor->Destroy();
 }
-
-
-
