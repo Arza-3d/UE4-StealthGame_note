@@ -11,28 +11,28 @@ UCLASS()
 class FPSGAME_API AFPSBlackHole : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
-	
+
+public:
+
 	AFPSBlackHole();
 
 	virtual void Tick(float DeltaTime) override;
 
 protected:
-	
+
 	virtual void BeginPlay() override;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Mesh")
-		UStaticMeshComponent* MeshComp;
+	UStaticMeshComponent* MeshComp;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Collision")
-		USphereComponent* InnerSphere;
+	USphereComponent* InnerSphere;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Collision")
-		USphereComponent* OuterSphere;
+	USphereComponent* OuterSphere;
 
-private:	
-	
+private:
+
 	UFUNCTION()
 	void HandleInnerSphereBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult);
 };
