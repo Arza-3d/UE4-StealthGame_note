@@ -39,7 +39,7 @@ void AFPSBlackHole::Tick(float DeltaTime)
 
 		if (primComp && primComp->IsSimulatingPhysics())
 		{
-			primComp->AddRadialForce(GetActorLocation(), sphereRadius, -3000.0f, ERadialImpulseFalloff::RIF_Constant,	true);
+			primComp->AddRadialForce(GetActorLocation(), sphereRadius, -3000.0f, ERadialImpulseFalloff::RIF_Constant, true);
 		}
 	}
 
